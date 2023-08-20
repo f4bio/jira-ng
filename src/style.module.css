@@ -1,0 +1,10 @@
+/* Preflights are needed for default values of variables */
+@unocss preflights;
+
+.title {
+  @apply font-bold;
+}
+
+.desc {
+  @apply text-green-600;
+}
