@@ -1,50 +1,38 @@
 import { getPanel } from "@violentmonkey/ui";
-// global CSS
-import globalCss from "./style.css";
-// CSS modules
-import styles, { stylesheet } from "./style.module.css";
+import { Sluggin } from "sluggin";
 
-function Greetings() {
-  return (
-    <>
-      <div className={styles.title}>hello</div>
-      <p className={styles.desc}>This is a panel. You can drag to move it.</p>
-    </>
-  );
+function formatBranchName(id: string, name: string) {
+  const _id = id.replace(/[-]/g, "");
+  const _name = Sluggin(name);
+  return `${_id}-${_name}`;
 }
 
-// Let's create a movable panel using @violentmonkey/ui
-const panel = getPanel({
-  content: <Greetings />,
-  theme: "dark",
-  style: [globalCss, stylesheet].join("\n"),
-})
-panel.wrapper.style.top = "100px";
-panel.setMovable(true)
-panel.show()
-
-// Let's create a movable panel using @violentmonkey/ui
-const toast = VM.showToast(<div>hello</div>, {
-  theme: "dark", // or 'light'
-  duration: 2000, // or 0 to manually close it
-})
-
-// Manually close it
-toast.close()
-
-const disconnect = VM.observe(document.body, () => {
+VM.observe(document.body, () => {
   // Find the target node
-  const node = document.querySelector(".profile")
+  const actionPanel = document.querySelector("._otyr1b66._1yt4swc3._1e0c116y");
+  const taskId = document.querySelector(
+    "a[data-testid='issue.views.issue-base.foundation.breadcrumbs.current-issue.item'] > span",
+  ).innerHTML;
+  const taskName = document.querySelector(
+    "h1[data-testid='issue.views.issue-base.foundation.summary.heading']",
+  ).innerHTML;
 
-  if (node) {
-    const h1 = document.createElement("h1")
-    h1.textContent = "Profile"
-    node.prepend(h1)
+  if (actionPanel && taskId && taskName) {
+    const branchName = formatBranchName(taskId, taskName);
+
+    console.log("branchName:", branchName);
+
+    const button = document.createElement("button");
+    button.innerHTML = "Get Branch Name";
+    button.onclick = () => {
+      alert("branch name: " + branchName);
+    };
+    actionPanel.append(button);
 
     // disconnect observer
-    return true
+    return true;
   }
-})
+});
 
 // You can also disconnect the observer explicitly when it's not used any more
-disconnect()
+// disconnect();

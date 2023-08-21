@@ -13,10 +13,11 @@
       "DOM.Iterable",
       "ScriptHost",
       "ESNext"
-    ]
+    ],
+    "typeRoots": ["node_modules/@types"]
   },
   "include": [
     "src/**/*",
-    "node_modules/@violentmonkey/types"
+    "node_modules/@types/tampermonkey"
   ]
 }

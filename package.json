@@ -18,8 +18,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
+    "@stdlib/string-acronym": "^0.1.0",
+    "@types/tampermonkey": "^4.0.11",
     "@violentmonkey/dom": "^2.1.4",
-    "@violentmonkey/ui": "^0.7.8"
+    "@violentmonkey/ui": "^0.7.8",
+    "sluggin": "^0.4.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.22.5",
