@@ -18,7 +18,33 @@ const panel = getPanel({
   content: <Greetings />,
   theme: "dark",
   style: [globalCss, stylesheet].join("\n"),
-});
+})
 panel.wrapper.style.top = "100px";
-panel.setMovable(true);
-panel.show();
+panel.setMovable(true)
+panel.show()
+
+// Let's create a movable panel using @violentmonkey/ui
+const toast = VM.showToast(<div>hello</div>, {
+  theme: "dark", // or 'light'
+  duration: 2000, // or 0 to manually close it
+})
+
+// Manually close it
+toast.close()
+
+const disconnect = VM.observe(document.body, () => {
+  // Find the target node
+  const node = document.querySelector(".profile")
+
+  if (node) {
+    const h1 = document.createElement("h1")
+    h1.textContent = "Profile"
+    node.prepend(h1)
+
+    // disconnect observer
+    return true
+  }
+})
+
+// You can also disconnect the observer explicitly when it's not used any more
+disconnect()

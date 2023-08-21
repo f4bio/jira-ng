@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        My Script
+// @name        Jira Next Gen
 // @namespace   Violentmonkey Scripts
-// @description This is a userscript.
-// @match       *://*/*
+// @description f4bio's userscript for better Jira
+// @match       https://*.atlassian.net/*
 // @grant       GM_addStyle
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR
