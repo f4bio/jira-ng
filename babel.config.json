@@ -1,0 +1,16 @@
+{
+  "extends": "@gera2ld/plaid/config/babelrc-base",
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "macros",
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "VM.h",
+        "pragmaFrag": "VM.Fragment"
+      }
+    ]
+  ]
+}

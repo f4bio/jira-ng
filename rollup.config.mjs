@@ -1,7 +1,8 @@
-import path from 'path';
-import plaid from '@gera2ld/plaid';
-import userscript from 'rollup-plugin-userscript';
-import pkg from './package.json' assert { type: 'json' };
+import path from "path";
+import plaid from "@gera2ld/plaid";
+import userscript from "rollup-plugin-userscript";
+import replace from "@rollup/plugin-replace";
+import pkg from "./package.json" assert { type: "json" };
 
 const { getRollupPlugins } = plaid;
 const DIST = 'dist';
@@ -13,7 +14,7 @@ const bundleOptions = {
 };
 const rollupConfig = [
   {
-    input: 'src/index.ts',
+    input: "src/index.ts",
     plugins: [
       ...getRollupPlugins({
         esm: true,
@@ -22,25 +23,24 @@ const rollupConfig = [
           inject: false,
           minimize: true,
         },
-        extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx'],
+        extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx"],
       }),
-      userscript(
-        path.resolve('src/meta.js'),
-        meta => meta
-          .replace('process.env.VERSION', pkg.version)
-          .replace('process.env.AUTHOR', pkg.author),
+      replace({
+        preventAssignment: true,
+      }),
+      userscript(path.resolve("src/meta.js"), (meta) =>
+        meta
+          .replace("process.env.VERSION", pkg.version)
+          .replace("process.env.AUTHOR", pkg.author),
       ),
     ],
-    external: [
-      '@violentmonkey/ui',
-      '@violentmonkey/dom',
-    ],
+    external: ["@violentmonkey/ui", "@violentmonkey/dom"],
     output: {
-      format: 'iife',
+      format: "iife",
       file: `${DIST}/${FILENAME}.user.js`,
       globals: {
-        '@violentmonkey/dom': 'VM',
-        '@violentmonkey/ui': 'VM',
+        "@violentmonkey/dom": "VM",
+        "@violentmonkey/ui": "VM",
       },
       ...bundleOptions,
     },

@@ -8,3 +8,8 @@
 .desc {
   @apply text-green-600;
 }
+
+/* style.module.css */
+.container {
+  padding: 8px;
+}

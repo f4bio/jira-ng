@@ -1,14 +1,16 @@
 // ==UserScript==
 // @name        Jira Next Gen
 // @namespace   Violentmonkey Scripts
-// @description f4bio's userscript for better Jira
+// @description Userscript for better Jira by f4bio
 // @match       https://*.atlassian.net/*
 // @grant       GM_addStyle
+// @grant       GM_setClipboard
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR
 // @require     https://cdn.jsdelivr.net/combine/npm/@violentmonkey/dom@2,npm/@violentmonkey/ui@0.7
 // @require     https://cdn.jsdelivr.net/gh/stdlib-js/string-acronym@umd/browser.js
 // @require     https://cdn.jsdelivr.net/gh/juanbrujo/Sluggin.js@1.4.1/dist/Sluggin.min.js
+// @require     https://unpkg.com/react-svg/dist/react-svg.umd.development.js
 // ==/UserScript==
 
 /**
