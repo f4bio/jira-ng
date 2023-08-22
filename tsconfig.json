@@ -14,10 +14,12 @@
       "ScriptHost",
       "ESNext"
     ],
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@violentmonkey/types"
+    ]
   },
   "include": [
-    "src/**/*",
-    "node_modules/@types/tampermonkey"
+    "src/**/*"
   ]
 }

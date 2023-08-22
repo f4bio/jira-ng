@@ -4,5 +4,5 @@ declare namespace JSX {
    * - VNode   - when jsxFactory is VM.h
    * - DomNode - when jsxFactory is VM.hm
    */
-  type Element = import("@gera2ld/jsx-dom").VNode
+  type Element = import("@gera2ld/jsx-dom").VNode;
 }

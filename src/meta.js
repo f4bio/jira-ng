@@ -8,9 +8,7 @@
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR
 // @require     https://cdn.jsdelivr.net/combine/npm/@violentmonkey/dom@2,npm/@violentmonkey/ui@0.7
-// @require     https://cdn.jsdelivr.net/gh/stdlib-js/string-acronym@umd/browser.js
-// @require     https://cdn.jsdelivr.net/gh/juanbrujo/Sluggin.js@1.4.1/dist/Sluggin.min.js
-// @require     https://unpkg.com/react-svg/dist/react-svg.umd.development.js
+// @require     https://cdn.jsdelivr.net/npm/slugify
 // ==/UserScript==
 
 /**

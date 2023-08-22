@@ -1,12 +1,18 @@
 import path from "path";
 import plaid from "@gera2ld/plaid";
 import userscript from "rollup-plugin-userscript";
-import replace from "@rollup/plugin-replace";
+import svg from "rollup-plugin-svg";
+import image from "@rollup/plugin-image";
+import resolve from "@rollup/plugin-node-resolve";
+// import svgr from "@svgr/rollup";
 import pkg from "./package.json" assert { type: "json" };
 
+plaid.getRollupPlugins;
+
 const { getRollupPlugins } = plaid;
-const DIST = 'dist';
-const FILENAME = 'index';
+const DIST = "dist";
+const FILENAME = "index";
+const isProd = process.env.BUILD === "production";
 
 const bundleOptions = {
   extend: true,
@@ -21,13 +27,17 @@ const rollupConfig = [
         minimize: false,
         postcss: {
           inject: false,
-          minimize: true,
+          minimize: isProd ? true : false,
         },
         extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx"],
+        replaceValues: {
+          preventAssignment: true,
+        }
       }),
-      replace({
-        preventAssignment: true,
-      }),
+      resolve(),
+      image(),
+      // svg(),
+      // svgr({ icon: true }),
       userscript(path.resolve("src/meta.js"), (meta) =>
         meta
           .replace("process.env.VERSION", pkg.version)
@@ -50,7 +60,7 @@ const rollupConfig = [
 rollupConfig.forEach((item) => {
   item.output = {
     indent: false,
-    // If set to false, circular dependencies and live bindings for external imports won't work
+    // If set to false, circular dependencies and live bindings for external imports won"t work
     externalLiveBindings: false,
     ...item.output,
   };

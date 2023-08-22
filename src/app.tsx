@@ -1,10 +1,10 @@
-import VM from "@violentmonkey/dom";
-import VMui from "@violentmonkey/ui";
-import { Sluggin } from "sluggin";
+import slugify from "slugify";
+import IconBranchSvg from "./icons/branch.svg";
+import IconBranchPng from "./icons/branch.png";
 
 function formatBranchName(id: string, name: string) {
   const _id = id.replace(/-/g, "");
-  const _name = Sluggin(name);
+  const _name = slugify(name);
   return `${_id}-${_name}`;
 }
 
@@ -15,6 +15,8 @@ function BranchNameButton() {
         <span class="css-bwxjrz">
           <span class="_ca0qidpf _u5f3idpf _n3tdidpf _19bvidpf _18u0myb0 _2hwx12gs">
             <span class="css-1afrefi">Branch Icon</span>
+            <img src={IconBranchPng} alt="Whatever" />
+            <IconBranchSvg />
           </span>
         </span>
         <span class="css-178ag6o">Branch Name</span>
@@ -23,18 +25,20 @@ function BranchNameButton() {
   );
 }
 
+VM.hm(<BranchNameButton />);
+
 VM.observe(document.body, () => {
   // Find the target node
   const actionPanel = document.querySelector("._otyr1b66._1yt4swc3._1e0c116y");
   const taskId = document.querySelector(
     "a[data-testid='issue.views.issue-base.foundation.breadcrumbs.current-issue.item'] > span",
-  ).innerHTML;
+  );
   const taskName = document.querySelector(
     "h1[data-testid='issue.views.issue-base.foundation.summary.heading']",
-  ).innerHTML;
+  );
 
   if (actionPanel && taskId && taskName) {
-    const branchName = formatBranchName(taskId, taskName);
+    const branchName = formatBranchName(taskId.innerHTML, taskName.innerHTML);
     console.log("branchName:", branchName);
 
     // Let's create a movable panel using @violentmonkey/ui
@@ -47,11 +51,11 @@ VM.observe(document.body, () => {
     // panel.setMovable(true);
     // panel.show();
 
-    const panel = VMui.getPanel({
+    const panel = VM.getPanel({
       content: <BranchNameButton />,
       theme: "light",
     });
-    console.log("pnel", panel);
+    console.log("panel", panel);
     actionPanel.append(panel.wrapper);
 
     // const button = document.createElement("button");

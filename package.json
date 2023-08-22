@@ -9,32 +9,34 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "npx rollup -wc",
+    "dev": "npx rollup --environment BUILD:development --config --watch",
     "clean": "npx del-cli dist",
     "lint": "npx eslint --ext .ts,.tsx .",
     "ci": "npx run-s lint",
-    "build:js": "npx rollup -c",
-    "build": "cross-env NODE_ENV=production run-s ci clean build:js"
+    "build:prod": "npx rollup --environment BUILD:production --config",
+    "build:dev": "npx rollup --environment BUILD:development --config",
+    "build": "cross-env NODE_ENV=production run-s ci clean build:prod"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
     "@violentmonkey/dom": "^2.1.4",
     "@violentmonkey/ui": "^0.7.8",
-    "react-svg": "^16.1.22",
-    "sluggin": "^0.4.1"
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.22.5",
     "@gera2ld/plaid": "^2.5.9",
     "@gera2ld/plaid-common-ts": "^2.5.9",
     "@gera2ld/plaid-rollup": "^2.5.9",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@types/tampermonkey": "^4.0.11",
+    "@rollup/plugin-image": "^3.0.2",
+    "@svgr/rollup": "^8.1.0",
     "@unocss/postcss": "^0.55.2",
+    "@violentmonkey/types": "^0.1.5",
     "del-cli": "^5.0.0",
     "eslint": "^8.47.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.2",
+    "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-userscript": "^0.2.0",
     "unocss": "^0.55.2"
   }
