@@ -28,8 +28,6 @@
     "@gera2ld/plaid": "^2.5.9",
     "@gera2ld/plaid-common-ts": "^2.5.9",
     "@gera2ld/plaid-rollup": "^2.5.9",
-    "@iconify/json": "^2.2.105",
-    "@rollup/plugin-image": "^3.0.2",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@unocss/postcss": "^0.55.2",
     "@unocss/preset-icons": "^0.55.2",
@@ -38,7 +36,6 @@
     "eslint": "^8.47.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.2",
-    "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-userscript": "^0.2.0",
     "unocss": "^0.55.2"
   }

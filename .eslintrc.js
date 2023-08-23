@@ -8,4 +8,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
+  rules: {
+    "comma-dangle": ["error", "always-multiline"]
+  }
 };
