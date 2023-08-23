@@ -1,9 +1,13 @@
+import VM from "@violentmonkey/ui";
 import slugify from "slugify";
 import { SVGProperties } from "./types/svg";
 
 function formatName(id: string, name: string) {
   const _id: string = id.replace(/-/g, "");
-  const _name: string = slugify(name);
+  const _name: string = slugify(name, {
+    lower: true,
+    strict: true,
+  });
   return `${_id}-${_name}`;
 }
 
@@ -27,8 +31,16 @@ function Icon(props: SVGProperties) {
 
 function Button({ branchName }) {
   function handleClick(): void {
-    alert("branch name: " + branchName);
+    // alert("branch name: " + branchName);
+    console.log("branch name: " + branchName);
 
+    VM.showToast(
+      <div>copied branch-name `{branchName}` to your clipboard!</div>,
+      {
+        theme: "dark",
+        duration: 5000,
+      },
+    );
     GM_setClipboard(branchName, "text/plain");
   }
 

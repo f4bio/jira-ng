@@ -20,22 +20,10 @@ VM.observe(document.body, () => {
       taskId.innerHTML,
       taskName.innerHTML,
     );
-    console.log("branchName:", branchName);
-
     actionsContainer.insertBefore(
       VM.m(<Branch.Button branchName={branchName} />),
       attachButtonContainer.nextSibling,
     );
-
-    // const button = document.createElement("button");
-    // button.innerHTML = "Get Branch Name";
-    // button.onclick = () => {
-    //   alert("branch name: " + branchName);
-    //
-    GM_setClipboard(branchName, "text/plain");
-    // };
-    // console.log("button", button);
-
     // disconnect observer
     return true;
   }
