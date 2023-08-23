@@ -1,4 +1,5 @@
 import slugify from "slugify";
+import { SVGProperties } from "./types/svg";
 
 function formatName(id: string, name: string) {
   const _id: string = id.replace(/-/g, "");
@@ -6,7 +7,7 @@ function formatName(id: string, name: string) {
   return `${_id}-${_name}`;
 }
 
-function Icon(props: any) {
+function Icon(props: SVGProperties) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +60,6 @@ function Button({ branchName }) {
 
 export default {
   formatName: formatName,
-  button: Button,
-  icon: Icon,
+  Button: Button,
+  Icon: Icon,
 };

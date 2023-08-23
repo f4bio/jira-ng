@@ -23,7 +23,7 @@ VM.observe(document.body, () => {
     console.log("branchName:", branchName);
 
     actionsContainer.insertBefore(
-      VM.m(<Branch.button branchName={branchName} />),
+      VM.m(<Branch.Button branchName={branchName} />),
       attachButtonContainer.nextSibling,
     );
 
