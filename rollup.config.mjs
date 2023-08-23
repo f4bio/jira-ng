@@ -1,13 +1,7 @@
 import path from "path";
 import plaid from "@gera2ld/plaid";
 import userscript from "rollup-plugin-userscript";
-import svg from "rollup-plugin-svg";
-import image from "@rollup/plugin-image";
-import resolve from "@rollup/plugin-node-resolve";
-// import svgr from "@svgr/rollup";
 import pkg from "./package.json" assert { type: "json" };
-
-plaid.getRollupPlugins;
 
 const { getRollupPlugins } = plaid;
 const DIST = "dist";
@@ -27,17 +21,13 @@ const rollupConfig = [
         minimize: false,
         postcss: {
           inject: false,
-          minimize: isProd ? true : false,
+          minimize: isProd
         },
         extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx"],
         replaceValues: {
           preventAssignment: true,
         }
       }),
-      resolve(),
-      image(),
-      // svg(),
-      // svgr({ icon: true }),
       userscript(path.resolve("src/meta.js"), (meta) =>
         meta
           .replace("process.env.VERSION", pkg.version)
