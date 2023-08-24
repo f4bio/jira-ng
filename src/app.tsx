@@ -1,6 +1,7 @@
 import VM from "@violentmonkey/dom";
-import Branch from "./branch";
-import Development from "./development";
+import { formatName } from "./util";
+import { IconButton } from "./components";
+import { BranchIcon } from "./icons";
 
 VM.observe(document.body, () => {
   // ---
@@ -25,21 +26,27 @@ VM.observe(document.body, () => {
     detailsSectionsHeaders.forEach((sectionHeader) => {
       console.log("sectionHeader", sectionHeader.textContent);
 
-      if (sectionHeader.textContent === "Development") {
-        const sectionContainer = sectionHeader.closest(
-          "div[class='_1e0c1txw _1n261g80 _otyrpxbi _1nmz1hna']",
-        );
-        sectionContainer.remove();
-      }
+      // if (sectionHeader.textContent === "Development") {
+      //   const sectionContainer = sectionHeader.closest(
+      //     "div[class='_1e0c1txw _1n261g80 _otyrpxbi _1nmz1hna']",
+      //   );
+      //   sectionContainer.remove();
+      // }
     });
   }
 
   const detailsSectionContainer: Element = document.querySelector(
     "div[class='_ca0qftgi _u5f31crf _n3tdftgi _19bv1crf _vchhusvi _146cjjyb _1rhgjjyb _texlutpp _kkknidpf'] > div",
   );
+  const sectionContainer: Element =
+    detailsSectionContainer.querySelector("div");
   if (detailsSectionContainer) {
-    detailsSectionContainer.appendChild(
+    console.log("detailsSectionContainer", detailsSectionContainer);
+    console.log("sectionContainer", sectionContainer);
+
+    detailsSectionContainer.insertBefore(
       VM.m(<Development.DetailsSection branchName="abc" />),
+      sectionContainer,
     );
   }
 
@@ -59,12 +66,9 @@ VM.observe(document.body, () => {
       "h1[data-testid='issue.views.issue-base.foundation.summary.heading']",
     );
 
-    const branchName: string = Branch.formatName(
-      taskId.innerHTML,
-      taskName.innerHTML,
-    );
+    const branchName: string = formatName(taskId.innerHTML, taskName.innerHTML);
     actionsContainer.insertBefore(
-      VM.m(<Branch.Button branchName={branchName} />),
+      VM.m(<IconButton Icon={BranchIcon} name={branchName} />),
       attachButtonContainer.nextSibling,
     );
     // disconnect observer

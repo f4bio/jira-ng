@@ -1,9 +1,9 @@
 import VM from "@violentmonkey/ui";
 import slugify from "slugify";
 import { CogIcon, CopyIcon } from "./icons";
-import { BranchNameButton } from "./components";
+import { IconButton } from "./components";
 
-function formatName(id: string, name: string) {
+export function formatName(id: string, name: string) {
   const _id: string = id.replace(" ", "-");
   const _name: string = slugify(name, {
     lower: true,
@@ -128,6 +128,6 @@ function Dropdown({ branchName }) {
 
 export default {
   formatName: formatName,
-  Button: BranchNameButton,
+  Button: IconButton,
   Dropdown: Dropdown,
 };
