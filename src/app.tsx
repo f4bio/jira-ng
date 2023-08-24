@@ -1,12 +1,12 @@
 import VM from "@violentmonkey/dom";
-import { formatName } from "./util";
+import { formatName, handleClick } from "./util";
 import { IconButton } from "./components";
 import { BranchIcon } from "./icons";
 
 VM.observe(document.body, () => {
-  // ---
-  // upgrade warning remover
-  // ---
+  /**
+   * upgrade warning remover
+   */
   const upgradeWarningContainer: Element = document.querySelector(
     "div[class='_1e0c1txw _2lx21bp4 _1bah1h6o _4cvr1y6m _1yt41e2i _zulpu2gc _otyrpxbi']",
   );
@@ -15,9 +15,9 @@ VM.observe(document.body, () => {
     upgradeWarningContainer.remove();
   }
 
-  // ---
-  // extend development details section
-  // ---
+  /**
+   *extend development details section
+   */
   const detailsSectionsHeaders: NodeListOf<Element> = document.querySelectorAll(
     "h2[class='_1wyb1jqr _zg8l1kw7 _vwz41clk _k48pni7l _19pkpxbi _vchhusvi _syaz1fxt']",
   );
@@ -44,15 +44,17 @@ VM.observe(document.body, () => {
     console.log("detailsSectionContainer", detailsSectionContainer);
     console.log("sectionContainer", sectionContainer);
 
-    detailsSectionContainer.insertBefore(
-      VM.m(<Development.DetailsSection branchName="abc" />),
-      sectionContainer,
-    );
+    // detailsSectionContainer.insertBefore(
+    //   VM.m(<Development.DetailsSection branchName="abc" />),
+    //   sectionContainer,
+    // );
   }
 
-  // ---
-  // branch name button
-  // ---
+  /** ********
+   *
+   * branch name button
+   *
+   */
   const attachButtonContainer: Element = document
     .querySelector("button[aria-label='Attach']")
     ?.closest("div[role='presentation']");
@@ -68,7 +70,13 @@ VM.observe(document.body, () => {
 
     const branchName: string = formatName(taskId.innerHTML, taskName.innerHTML);
     actionsContainer.insertBefore(
-      VM.m(<IconButton Icon={BranchIcon} name={branchName} />),
+      VM.m(
+        <IconButton
+          handleClick={handleClick}
+          Icon={BranchIcon}
+          name={branchName}
+        />,
+      ),
       attachButtonContainer.nextSibling,
     );
     // disconnect observer
