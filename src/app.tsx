@@ -2,8 +2,23 @@ import VM from "@violentmonkey/dom";
 import { formatName, handleClick } from "./util";
 import { IconButton } from "./components";
 import { BranchIcon } from "./icons";
+import { IssueField } from "./components/issue-field";
 
 VM.observe(document.body, () => {
+  const taskId = () => {
+    const taskId: Element = document.querySelector(
+      "a[data-testid='issue.views.issue-base.foundation.breadcrumbs.current-issue.item'] > span",
+    );
+    return taskId?.innerHTML;
+  };
+
+  const taskName = () => {
+    const taskName: Element = document.querySelector(
+      "h1[data-testid='issue.views.issue-base.foundation.summary.heading']",
+    );
+    return taskName?.innerHTML;
+  };
+
   /**
    * upgrade warning remover
    */
@@ -18,36 +33,28 @@ VM.observe(document.body, () => {
   /**
    *extend development details section
    */
-  const detailsSectionsHeaders: NodeListOf<Element> = document.querySelectorAll(
-    "h2[class='_1wyb1jqr _zg8l1kw7 _vwz41clk _k48pni7l _19pkpxbi _vchhusvi _syaz1fxt']",
+  const issueField: Element = document.querySelector(
+    "div[data-component-selector='jira-issue-field-heading-field-wrapper']",
   );
-
-  if (detailsSectionsHeaders) {
-    detailsSectionsHeaders.forEach((sectionHeader) => {
-      console.log("sectionHeader", sectionHeader.textContent);
-
-      // if (sectionHeader.textContent === "Development") {
-      //   const sectionContainer = sectionHeader.closest(
-      //     "div[class='_1e0c1txw _1n261g80 _otyrpxbi _1nmz1hna']",
-      //   );
-      //   sectionContainer.remove();
-      // }
-    });
-  }
-
-  const detailsSectionContainer: Element = document.querySelector(
-    "div[class='_ca0qftgi _u5f31crf _n3tdftgi _19bv1crf _vchhusvi _146cjjyb _1rhgjjyb _texlutpp _kkknidpf'] > div",
+  const issueFieldContainer: Element = document.querySelector(
+    "div[data-testid='issue-view-layout-templates-views.ui.context.visible-hidden.ui.context-group.details-group']",
   );
-  const sectionContainer: Element =
-    detailsSectionContainer.querySelector("div");
-  if (detailsSectionContainer) {
-    console.log("detailsSectionContainer", detailsSectionContainer);
-    console.log("sectionContainer", sectionContainer);
+  if (issueField && issueFieldContainer) {
+    console.log("issueFieldContainer", issueFieldContainer);
+    console.log("issueField", issueField);
 
-    // detailsSectionContainer.insertBefore(
-    //   VM.m(<Development.DetailsSection branchName="abc" />),
-    //   sectionContainer,
-    // );
+    const branchName: string = formatName(taskId(), taskName());
+
+    issueFieldContainer.insertBefore(
+      VM.m(
+        <IssueField
+          name={branchName}
+          Icon={undefined}
+          handleClick={undefined}
+        />,
+      ),
+      issueField.nextSibling,
+    );
   }
 
   /** ********
@@ -61,14 +68,7 @@ VM.observe(document.body, () => {
   const actionsContainer = attachButtonContainer?.parentNode;
 
   if (actionsContainer) {
-    const taskId: Element = document.querySelector(
-      "a[data-testid='issue.views.issue-base.foundation.breadcrumbs.current-issue.item'] > span",
-    );
-    const taskName: Element = document.querySelector(
-      "h1[data-testid='issue.views.issue-base.foundation.summary.heading']",
-    );
-
-    const branchName: string = formatName(taskId.innerHTML, taskName.innerHTML);
+    const branchName: string = formatName(taskId(), taskName());
     actionsContainer.insertBefore(
       VM.m(
         <IconButton
