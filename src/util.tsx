@@ -10,10 +10,10 @@ export function formatName(id: string, name: string) {
   return `${_id}/${_name}`;
 }
 
-export function handleClick({ name }): void {
-  VM.showToast(<div>clicked on `{name}`</div>, {
+export function copyToClipboard(content: string): void {
+  VM.showToast(<div>copied to clipboard</div>, {
     theme: "dark",
-    duration: 5000,
+    duration: 2000,
   });
-  GM_setClipboard(name, "text/plain");
+  GM_setClipboard(content, "text/plain");
 }
