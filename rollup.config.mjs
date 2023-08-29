@@ -35,13 +35,14 @@ const rollupConfig = [
           .replace("process.env.DESCRIPTION", pkg.description),
       ),
     ],
-    external: ["@violentmonkey/ui", "@violentmonkey/dom"],
+    external: ["@violentmonkey/ui", "@violentmonkey/dom", "slugify"],
     output: {
       format: "iife",
       file: `${DIST}/${FILENAME}.user.js`,
       globals: {
         "@violentmonkey/dom": "VM",
         "@violentmonkey/ui": "VM",
+        "slugify": "slugify"
       },
       ...bundleOptions,
     },

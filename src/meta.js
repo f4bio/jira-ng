@@ -6,8 +6,10 @@
 // @grant       GM_setClipboard
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR
-// @require     https://cdn.jsdelivr.net/combine/npm/@violentmonkey/dom@2,npm/@violentmonkey/ui@0.7
-// @require     https://cdn.jsdelivr.net/npm/slugify
+// @license     AGPL-3
+// @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
+// @require     https://cdn.jsdelivr.net/npm/@violentmonkey/ui@0.7
+// @require     https://cdn.jsdelivr.net/npm/slugify@1.6.6
 // ==/UserScript==
 
 /**

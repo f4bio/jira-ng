@@ -1,5 +1,4 @@
 import VM from "@violentmonkey/ui";
-import slugify from "slugify";
 
 export function formatName(id: string, name: string) {
   const _id: string = id.replace(" ", "-");
