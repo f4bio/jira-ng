@@ -9,6 +9,16 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   rules: {
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "no-console": [
+      "error",
+      {
+        allow:
+          ["warn", "error"]
+      }
+    ]
   }
 };

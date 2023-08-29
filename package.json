@@ -1,9 +1,9 @@
 {
-  "name": "jira-ng",
-  "version": "0.0.0",
-  "description": "",
-  "author": "f4bio",
-  "license": "MIT",
+  "name": "jira-tweaks",
+  "version": "0.0.1",
+  "description": "Userscript adding some jira tweaks (for devs?)",
+  "author": "Fabio T <iam@f4b.io> (https://iam.f4b.io)",
+  "license": "SEE LICENSE IN LICENSE",
   "private": true,
   "engines": {
     "node": ">=18"
@@ -15,7 +15,7 @@
     "ci": "npm run lint",
     "build:prod": "npx rollup --environment BUILD:production --config",
     "build:dev": "npx rollup --environment BUILD:development --config",
-    "build": "npm run clean && npm run ci && npm run build:prod"
+    "build": "npm run clean && npm run lint && npm run build:prod"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.11",

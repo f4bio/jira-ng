@@ -1,9 +1,8 @@
 // ==UserScript==
-// @name        Jira Next Gen
+// @name        Jira Tweaks
 // @namespace   Violentmonkey Scripts
-// @description Userscript for better Jira by f4bio
+// @description process.env.DESCRIPTION
 // @match       https://*.atlassian.net/*
-// @grant       GM_addStyle
 // @grant       GM_setClipboard
 // @version     process.env.VERSION
 // @author      process.env.AUTHOR

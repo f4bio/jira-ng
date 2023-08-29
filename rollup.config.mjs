@@ -18,7 +18,7 @@ const rollupConfig = [
     plugins: [
       ...getRollupPlugins({
         esm: true,
-        minimize: false,
+        minimize: isProd,
         postcss: {
           inject: false,
           minimize: isProd
@@ -31,7 +31,8 @@ const rollupConfig = [
       userscript(path.resolve("src/meta.js"), (meta) =>
         meta
           .replace("process.env.VERSION", pkg.version)
-          .replace("process.env.AUTHOR", pkg.author),
+          .replace("process.env.AUTHOR", pkg.author)
+          .replace("process.env.DESCRIPTION", pkg.description),
       ),
     ],
     external: ["@violentmonkey/ui", "@violentmonkey/dom"],

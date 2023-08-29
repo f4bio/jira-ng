@@ -11,7 +11,7 @@ export function formatName(id: string, name: string) {
 }
 
 export function copyToClipboard(content: string): void {
-  VM.showToast(<div>copied to clipboard</div>, {
+  VM.showToast(<div>copied to `{content}` clipboard</div>, {
     theme: "dark",
     duration: 2000,
   });
